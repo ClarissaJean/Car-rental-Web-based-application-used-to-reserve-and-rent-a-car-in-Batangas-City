@@ -1,2 +1,2 @@
-# Car-Rental-Web-based-application-used-to-researve-and-rent-a-car-in-Batangas-City
+# Car-Rental : Web-based application used to reserve and rent a car in Batangas City
 Rental Car
