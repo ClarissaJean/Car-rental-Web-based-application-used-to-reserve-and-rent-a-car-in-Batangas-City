@@ -18,11 +18,16 @@ Acquiring a car rental automobile is a  form of easear from the people who trave
 
 
 
-
-
-
 # Objectives of the Study
 
+<div dir="rtl">
+  
+1. Admin/company and customer can create a account
+2. To provide an easy access to reserve with the customer want to rent a car
+3. To provide a secure and effective and efficient business daily inputs and transactions.
+4. To provide a good service car rental business in the customer
+
+  </div>
 
 
 
