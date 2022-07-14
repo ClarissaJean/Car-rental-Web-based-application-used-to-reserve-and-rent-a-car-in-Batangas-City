@@ -38,6 +38,8 @@ Acquiring a car rental automobile is a  form of easear from the people who trave
 
 # Functional Requirements
 
+ <div dir="rtl">
+ 
 Customer Registration  - Create Customer Account which will fill the Full Name, Email, address, occupation, Age, Valid ID, and contact number.
 Admin or Company Owner, Employee Registration - Create an account which fills the full Name and Email.
 User Profile
@@ -57,7 +59,8 @@ Customer Car Reservation  - Admin /company employee, owner selecting and identif
 Cancellation- Customer cancellations 
 
 
-
+   </DIV>
+  
 # Non Functional Requirements
 
 
