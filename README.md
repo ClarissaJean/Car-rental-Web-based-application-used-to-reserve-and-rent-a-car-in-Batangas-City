@@ -38,18 +38,23 @@ Acquiring a car rental automobile is a  form of easear from the people who trave
 
 # Functional Requirements
 
-# Customer Registration - Create Customer Account which will fill the Full Name, Email, address, occupation, Age, Valid ID, and contact number.
+Customer Registration  - Create Customer Account which will fill the Full Name, Email, address, occupation, Age, Valid ID, and contact number.
 Admin or Company Owner, Employee Registration - Create an account which fills the full Name and Email.
 User Profile
 
+CUSTOMER
 
+Account - Customer manage the edit password
+Car Category - Customer choose the car choices of brands and shall identity its prices and other Details
+Car Reservation - Customer will let their choices be reserve and fills the date must to rent and need an car they chosen
+Cancellation - Cancellation for the reserved they don't want to rent
+About - Information about car rental business, and Location 
 
+COMPANY OWNER, EMPLOYEE, /ADMIN
 
-
-
-
-
-
+Account - Admin/company employee,owner manage the edit password
+Customer Car Reservation  - Admin /company employee, owner selecting and identify the customer who’s confirm and reserved to rent a car
+Cancellation- Customer cancellations 
 
 
 
