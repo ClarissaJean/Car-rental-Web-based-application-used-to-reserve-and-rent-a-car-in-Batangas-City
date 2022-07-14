@@ -42,7 +42,7 @@ Acquiring a car rental automobile is a  form of easear from the people who trave
  
 **Customer Registration**  - Create Customer Account which will fill the Full Name, Email, address, occupation, Age, Valid ID, and contact number.
    
-**Admin or Company Owner, Employee Registration **- Create an account which fills the full Name and Email.
+**Admin or Company Owner, Employee Registration** -  Create an account which fills the full Name and Email.
    
 **User Profile**
 
