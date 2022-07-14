@@ -40,7 +40,7 @@ Acquiring a car rental automobile is a  form of easear from the people who trave
 
  <div dir="rtl">
  
-H1 Customer Registration  - Create Customer Account which will fill the Full Name, Email, address, occupation, Age, Valid ID, and contact number.
+# H1 Customer Registration  - Create Customer Account which will fill the Full Name, Email, address, occupation, Age, Valid ID, and contact number.
 H2 Admin or Company Owner, Employee Registration - Create an account which fills the full Name and Email.
 User Profile
 
