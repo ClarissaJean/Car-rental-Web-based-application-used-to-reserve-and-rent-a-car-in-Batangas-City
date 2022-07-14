@@ -46,8 +46,7 @@ User Profile
 
 CUSTOMER
 
-Account - Customer manage the edit password "/t"
-Car Category - Customer choose the car choices of brands and shall identity its prices and other Details "/t"
+Account - Customer manage the edit password "/t Car Category - Customer choose the car choices of brands and shall identity its prices and other Details "/t"
 Car Reservation - Customer will let their choices be reserve and fills the date must to rent and need an car they chosen "/t"
 Cancellation - Cancellation for the reserved they don't want to rent "t/"
 About - Information about car rental business, and Location  "/t"
