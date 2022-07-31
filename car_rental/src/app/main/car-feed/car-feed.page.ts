@@ -8,10 +8,12 @@ import {
   doc,
   updateDoc,
   query,
-  where
+  where,
+  orderBy
 } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { ModalController, ToastController } from '@ionic/angular';
+import { update } from 'firebase/database';
 
 
 @Component({
@@ -32,10 +34,13 @@ export class CarFeedPage implements OnInit {
   price:any;
 
   userData:any;
-  currentUser:any;
+  currentUser:any=[];
+  notifications: any=[];
+
+  imgurl:any;
 
   
-  constructor(private firestore:Firestore,private router:Router,private modal:ModalController, private toast:ToastController) {
+  constructor(private firestore:Firestore,private router:Router,private modal:ModalController, private toast:ToastController,) {
     this.userData=JSON.parse(localStorage.getItem('user'));
     console.log(this.userData.user);
 
@@ -50,14 +55,20 @@ export class CarFeedPage implements OnInit {
     this.getPosts()
 
     this.getdata()
+
+
   }
 
 
 
   isModalOpen = false;
 
+  isModalOpen2 = false;
   setOpen(isOpen: boolean) {
     this.isModalOpen = isOpen;
+  }
+  setOpen2(isOpen: boolean) {
+    this.isModalOpen2 = isOpen;
   }
 
   async presentToast(message: string) {
@@ -83,11 +94,16 @@ export class CarFeedPage implements OnInit {
         }),
 
       ];
-      console.log(this.currentUser);
+
+      this.currentUser=this.currentUser[0]
+
+      this.getNotifications(this.currentUser.role)
+
 
     }).catch(err=>{
       console.log(err);
     })
+
   }
 
 
@@ -95,7 +111,8 @@ export class CarFeedPage implements OnInit {
   getPosts(){
     const dbinstance=collection(this.firestore,'posts');
 
-    getDocs(dbinstance).then(res=>{
+    const q=query(dbinstance,where("status","==","available"));
+    getDocs(q).then(res=>{
       this.test = [
         ...res.docs.map((doc: any) => {
 
@@ -104,6 +121,7 @@ export class CarFeedPage implements OnInit {
         }),
 
       ];
+      this.test=this.test.reverse()
       console.log(this.test);
     }).catch(err=>{
       console.log(err);
@@ -118,17 +136,17 @@ export class CarFeedPage implements OnInit {
 
 
     let data={
-      location:"test",
-      bookerid:"test",
+      location:this.currentUser.location,
+      bookerid:"none",
       carmodel:this.carmodel,
       cartype:this.cartype,
       description:this.description,
       price:this.price,
       status:"available",
       date:date.toDateString(),
-      ownerid:"xo3BDds0H9bEAP8cvxThP3cscO02",
-      username:"khen",
-      img:'https://www.stratstone.com/-/media/stratstone/porsche/new-cars/inline-images/taycan/porsche-taycan-rear-driving-720x405px.ashx?mh=1440&la=en&h=405&w=720&mw=2560&hash=BC569C94BDA5FDD37E5587C7F313AFBC'
+      ownerid:this.currentUser.uid,
+      username:this.currentUser.username,
+      img:this.imgurl
 
       
     }
@@ -148,5 +166,129 @@ export class CarFeedPage implements OnInit {
     })
 
     
+  }
+
+
+
+  getNotifications(role){
+    const dbinstance=collection(this.firestore,'transaction');
+
+    if(role=='owner'){
+      const q=query(dbinstance,where("ownerid", "==", this.userData.user.uid),where("status", "==", "pending"));
+      getDocs(q).then(res=>{
+        this.notifications = [
+          ...res.docs.map((doc: any) => {
+
+            return {  id: doc.id ,...doc.data(),};
+
+          }),
+
+        ];
+        console.log(this.notifications);
+      }).catch(err=>{
+        console.log(err);
+      })
+
+    }else{
+
+      const q=query(dbinstance,where("bookerid", "==", this.userData.user.uid));
+      getDocs(q).then(res=>{
+        this.notifications = [
+          ...res.docs.map((doc: any) => {
+
+            return {  id: doc.id ,...doc.data(),};
+
+          }),
+
+        ];
+        console.log(this.notifications);
+      }).catch(err=>{
+        console.log(err);
+      })
+
+    }
+
+
+
+
+
+    
+  }
+
+
+  transactionAction(transaction,status){
+    console.log(transaction,status);
+    let data={
+      status:status
+    }
+    const dbinstance=doc(this.firestore,'transaction/'+transaction.id);
+    updateDoc(dbinstance,data).then(res=>{
+
+
+      this.updatePost(transaction)
+      this.presentToast('Transaction Updated Successfully');
+      this.ngOnInit()
+
+
+      
+      
+
+
+      
+
+
+
+
+    }).catch(err=>{
+      console.log(err);
+      this.presentToast('Error Updating Transaction');
+
+    })
+
+
+
+  }
+
+  updatePost(post){
+
+    let data2={
+      status:'booked'
+    }
+    const db=doc(this.firestore,'posts/'+post.postid);
+      updateDoc(db,data2).then(res=>{
+        console.log(res)  
+
+
+      }).catch(err=>{
+        console.log(err);
+      })
+
+  }
+
+
+
+
+  toRent(postid){
+    console.log(postid);
+    this.router.navigate(['/car-rent',postid])
+
+  }
+
+
+  cancel(postid){
+    // delete doc
+    const dbinstance=doc(this.firestore,'transaction/'+postid);
+    deleteDoc(dbinstance).then(res=>{
+      this.presentToast('Request Cancelled Successfully');
+      this.ngOnInit()
+
+    }
+    ).catch(err=>{
+      console.log(err);
+      this.presentToast('Error Cancelling Request');
+
+    }
+    )
+
   }
 }

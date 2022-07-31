@@ -28,7 +28,7 @@ const routes: Routes = [
     loadChildren: () => import('./main/car-feed/car-feed.module').then( m => m.CarFeedPageModule)
   },
   {
-    path: 'car-rent',
+    path: 'car-rent/:id',
     loadChildren: () => import('./main/car-rent/car-rent.module').then( m => m.CarRentPageModule)
   },
   {

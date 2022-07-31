@@ -41,7 +41,7 @@
           <ion-col>
             <ion-item>
               <ion-label position="floating">Password</ion-label>
-              <ion-input type="password"name="password" [(ngModel)]="password" ></ion-input>
+              <ion-input #input type="password"name="password" [(ngModel)]="password" ></ion-input>
 
               
             </ion-item>
@@ -54,7 +54,7 @@
         <ion-row>
           <ion-col>
             <div class="show">
-              <ion-checkbox></ion-checkbox>
+              <ion-checkbox (click)="showPass(input)"></ion-checkbox>
               <ion-label>Show Password</ion-label>
             </div>
           </ion-col>

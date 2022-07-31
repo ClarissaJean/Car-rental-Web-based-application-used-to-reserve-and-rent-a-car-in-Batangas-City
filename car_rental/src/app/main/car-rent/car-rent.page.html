@@ -7,7 +7,7 @@
 
 
 
-<ion-content [fullscreen]="true" class="ion-content-main">
+<ion-content [fullscreen]="true" class="ion-content-main"  *ngFor="let i of data">
 
 
   <div class="card">
@@ -25,21 +25,20 @@
               src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200"
             />
           </ion-avatar>
-          <h5>John</h5>
+          <h5>{{i.username}}</h5>
         </div>
         
       </div>
       <div class="desciption">
-        <ion-badge color="light">Car</ion-badge>
+        <ion-badge color="light">{{i.type}}</ion-badge>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique,
-          velit?
+          {{i.description}}
           <br>
-        <small>Makati City Philippines</small>
+        <small>{{i.location}}</small>
 
         </p>
 
-        <ion-badge color="light">Php 200.00/1hr</ion-badge>
+        <ion-badge color="light">Php {{i.price}}.00/1hr</ion-badge>
       </div>
 
       <div class="counter">
@@ -47,10 +46,10 @@
 
 
         <div class="counter-input">
-          <ion-button type="button" (click)="decrement()">-</ion-button>
+          <ion-button type="button" (click)="decrement(i.price)">-</ion-button>
           <ion-input type="number"  [(ngModel)]="count" disabled="" min="1"></ion-input>
 
-          <ion-button type="button" (click)="increment()">+</ion-button>
+          <ion-button type="button" (click)="increment(i.price)">+</ion-button>
           
 
         </div>
@@ -69,7 +68,7 @@
 
     </div>
     <div class="right">
-      <ion-button  class="book-button"  routerLink="/car-rent">
+      <ion-button (click)="bookCar(i.ownerid)" class="book-button" >
         <ion-icon name="book" style="margin-right: .5em;"></ion-icon>Book Now
       </ion-button>
     </div>
