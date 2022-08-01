@@ -224,10 +224,20 @@ export class CarFeedPage implements OnInit {
     const dbinstance=doc(this.firestore,'transaction/'+transaction.id);
     updateDoc(dbinstance,data).then(res=>{
 
+      if(status=='accepted'){
+        this.updatePost(transaction)
+        this.presentToast('Transaction Updated Successfully');
+       this.ngOnInit()
 
-      this.updatePost(transaction)
-      this.presentToast('Transaction Updated Successfully');
-      this.ngOnInit()
+
+      }else if(status=='rejected'){
+        this.presentToast('Transaction Rejected');
+        this.ngOnInit()
+
+      }
+
+
+      
 
 
       
@@ -250,6 +260,7 @@ export class CarFeedPage implements OnInit {
   }
 
   updatePost(post){
+    
 
     let data2={
       status:'booked'
