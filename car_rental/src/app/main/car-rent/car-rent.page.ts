@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Firestore,getDocs,where,query,collection,getDoc,addDoc } from '@angular/fire/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { ToastController } from '@ionic/angular';
-import { AnySrvRecord } from 'dns';
+
 
 @Component({
   selector: 'app-car-rent',
@@ -89,6 +89,7 @@ export class CarRentPage implements OnInit {
       this.ngOnInit()
     }else{
       this.count--;
+      
       this.total=this.total- Number(price) ;
 
     }
@@ -116,7 +117,7 @@ export class CarRentPage implements OnInit {
 
     const dbinstance=collection(this.firestore,'transaction')
     addDoc(dbinstance,data).then(res=>{
-      console.log(res)
+      
       this.presentToast('Booking Successful')
     }).catch(err=>{
       console.log(err)
