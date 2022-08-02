@@ -21,7 +21,7 @@ import { ToastController } from '@ionic/angular';
 export class SignUpPage implements OnInit {
 
 
-  // properties
+  
   email: any;
   name:any;
   username:any;
@@ -30,6 +30,7 @@ export class SignUpPage implements OnInit {
   role:any;
   location:any;
 
+  
 
 
 
