@@ -28,66 +28,8 @@ export class ProfilePage implements OnInit {
   }
 
   ngOnInit() {
-    this.getUser()
   }
 
 
-  getUser(){
-    const dbinstance=collection(this.firestore,'users')
-    const q=query(dbinstance,where('uid','==',this.data.user.uid))
-
-    getDocs(q).then(res=>{
-      this.profile = [
-        ...res.docs.map((doc: any) => {
-
-          return {  id: doc.id ,...doc.data(),};
-
-        }),
-
-      ];
-
-      this.profile=this.profile[0]
-      console.log(this.profile)
-
-    })
-  }
-
-
-  async presentToast(message) {
-  const toast = await this.toast.create({
-    message: message,
-    duration: 2000
-  });
-  toast.present();
-}
-
-
-
-
-  updatePassword(){
-
-    sendPasswordResetEmail(this.auth,this.profile.email).then(res=>{
-      this.presentToast('Password reset link has been sent to your email')
-    }
-    ).catch(err=>{
-      this.presentToast(err.message)
-    }
-    )
-
-  }
-
-  signOut(){
-    signOut(this.auth).then(res=>{
-      localStorage.clear()
-      this.router.navigate(['/'])
-
-      this.presentToast('User Signed Out')
-
-    }
-    ).catch(err=>{
-      this.presentToast(err.message)
-    }
-    )
-  }
-
+  
 }

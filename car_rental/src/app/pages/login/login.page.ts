@@ -17,6 +17,7 @@ export class LoginPage implements OnInit {
 
   email:any;
   password:any;
+  
   constructor(private auth: Auth,private router:Router,private toast:ToastController) { }
 
   ngOnInit() {
@@ -41,6 +42,7 @@ export class LoginPage implements OnInit {
       this.presentToast("Please fill all the fields");
       this.clear()
     }else{
+      
       this.signIn();
     }
   }
